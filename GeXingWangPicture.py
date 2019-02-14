@@ -1,7 +1,6 @@
 from pyquery import PyQuery as pq
 import requests
 from requests import RequestException
-from multiprocessing.pool import Pool
 import os
 
 n = 1   #用来记录图片的数量
@@ -34,6 +33,9 @@ def get_image(html):
         get_image_url(title_url)
 
 def get_image_url(title_url):
+    """
+    得到图片的url
+    """
     try:
         response = requests.get(title_url)
         if response.status_code == 200:
@@ -49,6 +51,9 @@ def get_image_url(title_url):
         return '请求失败' + title_url
 
 def download_image(img_url):
+    """
+    下载图片
+    """
     global n
     if not os.path.exists('picture'):
         os.mkdir('picture')
